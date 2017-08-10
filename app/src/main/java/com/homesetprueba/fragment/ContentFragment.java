@@ -25,7 +25,7 @@ import static com.homesetprueba.fragment.HomeFragment.BASIC_INFO;
  */
 
 public class ContentFragment extends Fragment implements NewsView {
-    private int mPager;
+
     private List<NewsTest> news;
     private HomeNewRecyclerView adapter;
     private RecyclerView mRecycler;
@@ -38,37 +38,12 @@ public class ContentFragment extends Fragment implements NewsView {
         return fragment;
     }
 
-    Bundle bundle = new Bundle();
-
-
-
-    public void setPage(int page){
-         mPager = page;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_content,container,false);
         news = new ArrayList<>();
         mRecycler = (RecyclerView) v.findViewById(R.id.recycler_news);
-
-        /*switch (mPager){
-            case 0:
-
-
-
-                adapter = new HomeNewRecyclerView(getContext(),news);
-                mRecycler.setHasFixedSize(true);
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                mRecycler.setLayoutManager(layoutManager);
-                mRecycler.setAdapter(adapter);
-                break;
-
-            case 1:
-                break;
-
-        }*/
 
         return v;
     }

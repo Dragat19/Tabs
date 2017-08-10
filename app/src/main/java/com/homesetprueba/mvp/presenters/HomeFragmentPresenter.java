@@ -1,6 +1,7 @@
 package com.homesetprueba.mvp.presenters;
 
 
+import com.homesetprueba.BaseApplication;
 import com.homesetprueba.api.CustomObserver;
 import com.homesetprueba.api.response.HomeResponse;
 import com.homesetprueba.mvp.views.HomeView;
@@ -46,7 +47,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeView> {
     };
 
     public void getHome() {
-        compositeSubscription.add(BaseApplication.apiManager.getHome().subscribe(observer));
+        compositeSubscription.add(BaseApplication.requestController.getHome().subscribe(observer));
     }
 
 }

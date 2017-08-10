@@ -3,6 +3,7 @@ package com.homesetprueba.mvp.presenters;
 
 import android.util.Log;
 
+import com.homesetprueba.BaseApplication;
 import com.homesetprueba.api.*;
 import com.homesetprueba.api.response.NewsResponse;
 import com.homesetprueba.mvp.views.NewsView;
@@ -58,7 +59,7 @@ public class NewsFragmentPresenter extends BasePresenter<NewsView> {
 
     public void getNews(String idCategory) {
         init();
-        compositeSubscription.add(BaseApplication.apiManager.getNews(idCategory, nextPage).subscribe(observer));
+        compositeSubscription.add(BaseApplication.requestController.getNews(idCategory, nextPage).subscribe(observer));
     }
 
     private void init() {
