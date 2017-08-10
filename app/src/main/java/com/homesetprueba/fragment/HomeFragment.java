@@ -15,6 +15,7 @@ import com.homesetprueba.mvp.presenters.HomeFragmentPresenter;
 import com.homesetprueba.mvp.views.HomeView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by albertsanchez on 9/8/17.
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment implements HomeView {
 
     public static final String BASIC_INFO = "BASIC_INFO";
-
+    private List<Module> modules;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private PagerListFragmentAdapter adapter;
@@ -38,7 +39,7 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragments_tabs,null);
-
+        modules = new ArrayList<>();
         tabLayout = (TabLayout)v.findViewById(R.id.tab_layout);
         viewPager = (ViewPager) v.findViewById(R.id.pager);
         adapter = new PagerListFragmentAdapter(getChildFragmentManager());
@@ -48,6 +49,10 @@ public class HomeFragment extends Fragment implements HomeView {
         presenter.attachMvpView(this);
         presenter.getHome();
 
+        for (int i = 0; i>modules.size(); i++ ){
+            adapter.addFragment(ContentFragment.newInstance(modules.get(i).getBasicInfo(),i),modules.get(i).getName());
+        }
+        adapter.notifyDataSetChanged();
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(2);
         return v;
@@ -56,9 +61,8 @@ public class HomeFragment extends Fragment implements HomeView {
     @Override
     public void onDataUpdate(ArrayList<Module> modules) {
 
-        for (int i = 0; i>modules.size(); i++ ){
-            adapter.addFragment(ContentFragment.newInstance(modules.get(i).getBasicInfo()),modules.get(i).getName());
-        }
+
+
     }
 
     @Override
