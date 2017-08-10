@@ -50,9 +50,9 @@ public class ContentFragment extends Fragment {
 
                 listNews();
                 adapter = new HomeNewRecyclerView(getContext(),news);
-                mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
                 mRecycler.setHasFixedSize(true);
-                mRecycler.setItemAnimator(new DefaultItemAnimator());
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                mRecycler.setLayoutManager(layoutManager);
                 mRecycler.setAdapter(adapter);
                 break;
 
