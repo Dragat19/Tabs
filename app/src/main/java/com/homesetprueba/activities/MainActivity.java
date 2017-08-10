@@ -10,6 +10,8 @@ import com.homesetprueba.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,8 +19,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.home_fragment, HomeFragment.newInstance()).commit();
+        FragmentTransaction transacion = fragmentManager.beginTransaction();
+        transacion.replace(R.id.home_fragment,HomeFragment.newInstance()).commit();
+
 
        /* tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Noticia"));
@@ -32,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setOnTabSelectedListener(this);*/
     }
 
-   /* @Override
+
+
+    /* @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
     }

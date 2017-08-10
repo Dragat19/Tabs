@@ -1,17 +1,17 @@
-package com.homesetprueba.model;
+package com.homesetprueba.mvp.model;
 
 /**
  * Created by albertsanchez on 10/8/17.
  */
 
-public class News {
+public class NewsTest {
 
     private String titleNews;
     private String subTitlesNews;
     private String urlNews;
     private int img;
 
-    public News(String titleNews) {
+    public NewsTest(String titleNews) {
         this.titleNews = titleNews;
     }
 

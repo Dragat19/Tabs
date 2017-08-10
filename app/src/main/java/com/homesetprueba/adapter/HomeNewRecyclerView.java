@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.homesetprueba.R;
-import com.homesetprueba.model.News;
+import com.homesetprueba.mvp.model.NewsTest;
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ import java.util.List;
 public class HomeNewRecyclerView extends RecyclerView.Adapter<HomeNewRecyclerView.ItemViewHolder> {
 
     private Context context;
-    private List<News> news;
+    private List<NewsTest> news;
 
-    public HomeNewRecyclerView(Context context, List<News> news) {
+    public HomeNewRecyclerView(Context context, List<NewsTest> news) {
         this.context = context;
         this.news = news;
     }

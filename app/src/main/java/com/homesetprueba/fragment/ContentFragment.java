@@ -3,8 +3,6 @@ package com.homesetprueba.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,27 +10,37 @@ import android.view.ViewGroup;
 
 import com.homesetprueba.R;
 import com.homesetprueba.adapter.HomeNewRecyclerView;
-import com.homesetprueba.model.News;
+import com.homesetprueba.mvp.model.BasicInfo;
+import com.homesetprueba.mvp.model.News;
+import com.homesetprueba.mvp.model.NewsTest;
+import com.homesetprueba.mvp.views.NewsView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.homesetprueba.fragment.HomeFragment.BASIC_INFO;
 
 /**
  * Created by albertsanchez on 9/8/17.
  */
 
-public class ContentFragment extends Fragment {
+public class ContentFragment extends Fragment implements NewsView {
     private int mPager;
-    private List<News> news;
+    private List<NewsTest> news;
     private HomeNewRecyclerView adapter;
     private RecyclerView mRecycler;
-    private String[] title = {"Title 1","Title 2","Title 3","Title 4","Title 5","Title 6"};
 
-    public static ContentFragment newInstance(int page) {
+    public static ContentFragment newInstance(BasicInfo moduleInfo) {
         ContentFragment fragment = new ContentFragment();
-        fragment.setPage(page);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(BASIC_INFO, moduleInfo);
+        fragment.setArguments(bundle);
         return fragment;
     }
+
+    Bundle bundle = new Bundle();
+
+
 
     public void setPage(int page){
          mPager = page;
@@ -45,10 +53,11 @@ public class ContentFragment extends Fragment {
         news = new ArrayList<>();
         mRecycler = (RecyclerView) v.findViewById(R.id.recycler_news);
 
-        switch (mPager){
+        /*switch (mPager){
             case 0:
 
-                listNews();
+
+
                 adapter = new HomeNewRecyclerView(getContext(),news);
                 mRecycler.setHasFixedSize(true);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -59,19 +68,24 @@ public class ContentFragment extends Fragment {
             case 1:
                 break;
 
-        }
+        }*/
 
         return v;
     }
 
 
-    private void listNews (){
-        news.add(new News(title[0]));
-        news.add(new News(title[1]));
-        news.add(new News(title[2]));
-        news.add(new News(title[3]));
-        news.add(new News(title[4]));
-        news.add(new News(title[5]));
+    @Override
+    public void onDataUpdate(ArrayList<News> news) {
+
     }
 
+    @Override
+    public void onError(String error) {
+
+    }
+
+    @Override
+    public void onHttpError(int errorCode, String meg) {
+
+    }
 }

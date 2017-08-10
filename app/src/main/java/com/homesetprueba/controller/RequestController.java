@@ -1,8 +1,11 @@
-package com.homesetprueba.api;
+package com.homesetprueba.controller;
 
 import android.content.Context;
 
-import com.homesetprueba.utis.Utils;
+import com.homesetprueba.api.response.HomeResponse;
+import com.homesetprueba.api.response.NewsResponse;
+import com.homesetprueba.api.RequestApiEndpoints;
+import com.homesetprueba.utils.Utils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -12,26 +15,26 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-/**
- * Created by albertsanchez on 10/8/17.
- */
 
-public class ApiManager {
+public class RequestController {
 
-    private static ApiEndpoints apiServiceAsync;
-    private static ApiManager instance;
+    private static RequestApiEndpoints apiServiceAsync;
+    private static RequestController instance;
     private static final int TIMEOUT_MILLIS = 10000;
     private final static String BASE_URL_APPS = "http://apps.playtown.mx/set_br/";
     private static final TimeUnit TIMEOUT_UNIT = TimeUnit.MILLISECONDS;
     private Context context;
 
-    private ApiManager(Context context) {
+    private RequestController(Context context) {
 
         this.context = context;
         RxJavaCallAdapterFactory rxAdapter = RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io());
@@ -43,7 +46,7 @@ public class ApiManager {
                 .addCallAdapterFactory(rxAdapter)
                 .build();
 
-        apiServiceAsync = retrofitAsync.create(ApiEndpoints.class);
+        apiServiceAsync = retrofitAsync.create(RequestApiEndpoints.class);
     }
 
 
@@ -72,10 +75,22 @@ public class ApiManager {
                 .build();
     }
 
-    public static ApiManager getInstance(Context context) {
+    public static RequestController getInstance(Context context) {
         if (instance == null) {
-            instance = new ApiManager(context);
+            instance = new RequestController(context);
         }
         return instance;
+    }
+
+    public Observable<ResponseBody> logSMS(String param1, String param2) {
+        return apiServiceAsync.exampleCall(param1, param2).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<NewsResponse> getNews(String idCategory, int page) {
+        return apiServiceAsync.getNews(idCategory,page).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<HomeResponse> getHome() {
+        return apiServiceAsync.getHome().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 }

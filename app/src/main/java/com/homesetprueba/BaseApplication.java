@@ -1,12 +1,14 @@
 package com.homesetprueba;
 
 import android.app.Application;
-import com.homesetprueba.api.ApiManager;
+
+import com.homesetprueba.controller.RequestController;
+
 
 public class BaseApplication extends Application {
 
     private static BaseApplication instance;
-    public static ApiManager apiManager;
+    public static RequestController requestController;
 
     public static BaseApplication getInstance() {
         if (instance == null) {
@@ -18,7 +20,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        apiManager = ApiManager.getInstance(this);
+        requestController = RequestController.getInstance(this);
     }
 
 }
