@@ -10,10 +10,8 @@ import android.widget.TextView;
 
 import com.homesetprueba.R;
 import com.homesetprueba.mvp.model.News;
-import com.homesetprueba.mvp.model.NewsTest;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

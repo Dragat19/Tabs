@@ -3,16 +3,8 @@ package com.homesetprueba.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.UrlQuerySanitizer;
-
 
 public class Utils {
-
-
-    public static String getParam(String param, String url) {
-        UrlQuerySanitizer sanitzer = new UrlQuerySanitizer(url);
-        return sanitzer.getValue(param);
-    }
 
     public static boolean hasInternet(Context context) {
         ConnectivityManager connMgr = (ConnectivityManager)

@@ -10,9 +10,6 @@ import com.homesetprueba.mvp.views.NewsView;
 
 public class NewsPresenter extends BasePresenter<NewsView> {
 
-    private int nextPage;
-    private boolean canLoadMore;
-
     private CustomObserver<NewsResponse> observer = new CustomObserver<NewsResponse>() {
         @Override
         public void onCompleted() {
@@ -47,23 +44,14 @@ public class NewsPresenter extends BasePresenter<NewsView> {
 
         @Override
         public void onNext(NewsResponse news) {
-            nextPage = nextPage + 1;
-            if (news.getEmpty() == 1) {
-                canLoadMore = false;
-            }
-            if (canLoadMore) {
-                mvpView.onDataUpdate(news.getData());
-            }
+            super.onNext(news);
+            mvpView.onDataUpdate(news.getData());
         }
     };
 
     public void getNews(String idCategory) {
-        init();
-        compositeSubscription.add(BaseApplication.requestController.getNews(idCategory, nextPage).subscribe(observer));
+        compositeSubscription.add(BaseApplication.requestController.getNews(idCategory, 1).subscribe(observer));
     }
 
-    private void init() {
-        nextPage = 1;
-        canLoadMore = true;
-    }
+
 }

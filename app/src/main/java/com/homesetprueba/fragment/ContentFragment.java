@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 import static com.homesetprueba.fragment.HomeFragment.HOME_BASIC;
 
-
 /**
  * Created by albertsanchez on 9/8/17.
  */

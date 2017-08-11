@@ -1,7 +1,5 @@
 package com.homesetprueba.mvp.views;
 
-
-
 import com.homesetprueba.mvp.model.News;
 
 import java.util.ArrayList;

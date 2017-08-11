@@ -1,6 +1,5 @@
 package com.homesetprueba.mvp.presenters;
 
-
 import com.homesetprueba.BaseApplication;
 import com.homesetprueba.api.CustomObserver;
 import com.homesetprueba.api.response.HomeResponse;

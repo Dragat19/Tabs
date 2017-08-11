@@ -10,7 +10,6 @@ public class Module implements Serializable {
     private String icon;
     private String id_cat;
     private String category;
-    private ArrayList<Element> posts;
     private BasicInfo basicInfo;
 
     public String getName() {
@@ -23,10 +22,6 @@ public class Module implements Serializable {
 
     public String getId_cat() {
         return id_cat;
-    }
-
-    public ArrayList<Element> getPosts() {
-        return posts;
     }
 
     public String getCategory() {

@@ -17,7 +17,6 @@ public interface RequestApiEndpoints {
     @GET("public//?action=get_home")
     Observable<HomeResponse> getHome();
 
-    //http://apps.playtown.mx/set_br/public//?action=get_home
     @GET("public//?action=get_news")
     Observable<NewsResponse> getNews(@Query("category") String idCategory, @Query("page") int nextPage);
 
