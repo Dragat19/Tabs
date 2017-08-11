@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import android.view.ViewGroup;
 import com.homesetprueba.R;
 import com.homesetprueba.adapter.PagerListFragmentAdapter;
 import com.homesetprueba.mvp.model.Module;
-import com.homesetprueba.mvp.presenters.HomeFragmentPresenter;
+import com.homesetprueba.mvp.presenters.HomePresenter;
 import com.homesetprueba.mvp.views.HomeView;
 
 import java.util.ArrayList;
@@ -23,13 +24,14 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements HomeView {
 
-    public static final String BASIC_INFO = "BASIC_INFO";
+    public static final String HOME_BASIC= "INFO";
+    private static final String TAG = "HomeFragment";
     private List<Module> modules;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private PagerListFragmentAdapter adapter;
 
-    private HomeFragmentPresenter presenter;
+    private HomePresenter presenter;
     public static HomeFragment newInstance(){
         HomeFragment fragment = new HomeFragment();
         return fragment;
@@ -45,23 +47,26 @@ public class HomeFragment extends Fragment implements HomeView {
         adapter = new PagerListFragmentAdapter(getChildFragmentManager());
         tabLayout.setupWithViewPager(viewPager);
 
-        presenter = new HomeFragmentPresenter();
+        presenter = new HomePresenter();
         presenter.attachMvpView(this);
         presenter.getHome();
 
-        for (int i = 0; i>modules.size(); i++ ){
-            adapter.addFragment(ContentFragment.newInstance(modules.get(i).getBasicInfo(),i),modules.get(i).getName());
-        }
-        adapter.notifyDataSetChanged();
-        viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(2);
         return v;
     }
 
     @Override
     public void onDataUpdate(ArrayList<Module> modules) {
 
-
+        if (modules.size() != 0){
+            for (int i = 0; i < modules.size(); i++ ){
+                adapter.addFragment(ContentFragment.newInstance(modules.get(i).getBasicInfo(),i),modules.get(i).getName());
+                Log.d(TAG,"Modules " +modules.get(i).getName());
+            }
+            Log.d(TAG,"Modules " +modules.size());
+            adapter.notifyDataSetChanged();
+            viewPager.setAdapter(adapter);
+            viewPager.setOffscreenPageLimit(2);
+        }
 
     }
 

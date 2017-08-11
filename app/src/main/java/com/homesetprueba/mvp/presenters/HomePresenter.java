@@ -6,7 +6,7 @@ import com.homesetprueba.api.CustomObserver;
 import com.homesetprueba.api.response.HomeResponse;
 import com.homesetprueba.mvp.views.HomeView;
 
-public class HomeFragmentPresenter extends BasePresenter<HomeView> {
+public class HomePresenter extends BasePresenter<HomeView> {
 
     private CustomObserver<HomeResponse> observer = new CustomObserver<HomeResponse>() {
         @Override

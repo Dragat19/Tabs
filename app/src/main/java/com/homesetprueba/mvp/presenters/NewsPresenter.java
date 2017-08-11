@@ -8,7 +8,7 @@ import com.homesetprueba.api.*;
 import com.homesetprueba.api.response.NewsResponse;
 import com.homesetprueba.mvp.views.NewsView;
 
-public class NewsFragmentPresenter extends BasePresenter<NewsView> {
+public class NewsPresenter extends BasePresenter<NewsView> {
 
     private int nextPage;
     private boolean canLoadMore;
