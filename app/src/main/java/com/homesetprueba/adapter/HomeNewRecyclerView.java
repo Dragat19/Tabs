@@ -60,7 +60,6 @@ public class    HomeNewRecyclerView extends RecyclerView.Adapter<HomeNewRecycler
     public void setImagen_picasso(String Url, ImageView imageView) {
         Picasso.with(context)
                 .load(Url)
-                .resize(700,400)
                 .error(R.drawable.img_holder)
                 .into(imageView);
     }

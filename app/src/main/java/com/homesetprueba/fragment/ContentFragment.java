@@ -24,7 +24,7 @@ import static com.homesetprueba.fragment.HomeFragment.HOME_BASIC;
  */
 
 public class ContentFragment extends Fragment implements NewsView {
-    private int mPage;
+
     private BasicInfo info;
     private HomeNewRecyclerView adapter;
     private RecyclerView mRecycler;
@@ -34,13 +34,8 @@ public class ContentFragment extends Fragment implements NewsView {
         ContentFragment fragment = new ContentFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(HOME_BASIC, moduleInfo);
-        fragment.setPage(page);
         fragment.setArguments(bundle);
         return fragment;
-    }
-
-    public void setPage(int page) {
-       mPage = page;
     }
 
 
